@@ -1,9 +1,11 @@
-This codebook has been modified from the features_info.txt file present in the original data. The original codebook can be found at the end of this file.
+This codebook has been modified from the features_info.txt file present in the original data. 
+The original codebook can be found at the end of this file.
 
 =================
 Part 1
 
-From the unzipped folder, read in the files containing subject IDs, numeric activity labels, and data. This must be done for both the test and training subsets which are found in the test and training folders, respectively.
+From the unzipped folder, read in the files containing subject IDs, numeric activity labels, and data. 
+This must be done for both the test and training subsets which are found in the test and training folders, respectively.
 
 X_test.txt contained the test data
 y_text.txt contained the numeric activity labels (1-6)
@@ -24,11 +26,12 @@ The test_data and train_data sets were joined with rbind to create a single data
 ================
 Part 2
 
-The names of the 561 measured variables (more information about each variable can be found in the original codebook below) were imported from the features.txt file
+The names of the 561 measured variables were imported from the features.txt file
 
-grep was used to extract only variables which were means or standard deviations by looking for the text strings “mean” or “std” in the variable names.
+grep was used to extract only variables which were means or standard deviations.
 
-The single data set created in Part 1 was subset by variables with mean or std in the name. The new data set contained only 79 measured variables plus the subject and activity columns for a total of 81 variables.
+The single data set created in Part 1 was subset by variables with mean or std in the name. 
+The new data set contained only 79 measured variables plus the subject and activity columns for a total of 81 variables.
 
 
 =================
@@ -46,7 +49,8 @@ The activities numbered 1-6 were converted into meaningful descriptions using th
 =================
 Part 4
 
-The names of the 79 measured variables which were kept in Part 2 were converted to more meaningful names using the gsub function to edit the existing names. The following changes were made
+The names of the 79 measured variables kept in Part 2 were converted to more meaningful names with gsub. 
+The following changes were made
 
 () was removed
 incorrect duplication BodyBody was changed to Body
@@ -57,12 +61,16 @@ Gyro was changed to Gyroscope
 Mag was changed to Magnitude
 Freq was changed to Frequency
 
-These expanded names were based on information provided in the original codebook (below). In keeping with tidy data principles, the names were changed to be more descriptive, however, the capitalization structure was kept to be in line with existing naming conventions.
+These expanded names were based on information provided in the original codebook (below). 
+In keeping with tidy data principles, the names were changed to be more descriptive, however, 
+the capitalization structure was kept to be in line with existing naming conventions.
 
 =================
 Part 5
 
-A new tidy data set was created which took the average of each of the 79 measured variables for each activity done by each subject. Since there were 30 subjects and 6 activities, there are a total of 180 rows in this new data set. The 81 columns correspond to the subject ID, the activity name, and the 79 measured variables which are now reported as the mean for that activity as done by that subject.
+A new tidy data set was created which took the average of each of the 79 measured variables for each activity done by each subject. 
+Since there were 30 subjects and 6 activities, there are a total of 180 rows in this new data set. 
+The 81 columns correspond to the subject ID, the activity name, and the 79 measured variables which are now reported as the mean for that activity as done by that subject.
 
 This new data set is exported as tidy_averages.txt
 
