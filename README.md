@@ -16,5 +16,5 @@ The data for this project were downloaded and unzipped from https://d396qusza40o
 
 ###Notes
 * The script run_analysis.R assumes the data files are unzipped and in the current working directory. 
-* A full description of the variables is available in the Codebook.txt file.
+* A full description of the variables and steps taken during analysis is available in the Codebook.txt file.
 * The file tidy_averages.txt is the final submitted tidy data set containing the average of each activity by subject 
