@@ -1,0 +1,132 @@
+This codebook has been modified from the features_info.txt file present in the original data. The original codebook can be found at the end of this file.
+
+=================
+Part 1
+
+From the unzipped folder, read in the files containing subject IDs, numeric activity labels, and data. This must be done for both the test and training subsets which are found in the test and training folders, respectively.
+
+X_test.txt contained the test data
+y_text.txt contained the numeric activity labels (1-6)
+subject_test.txt contained the subject IDs
+
+These three files were joined with cbind to create a new test_data set
+The order of joining was subject ID, activity label, data
+
+X_train.text contained the training data
+y_train.txt contained the numeric activity labels (1-6)
+subject_train.txt contained the subject IDs
+
+These three files were joined with cbind to create a new train_data set
+The order of joining was subject ID, activity label, data
+
+The test_data and train_data sets were joined with rbind to create a single data set (data)
+
+================
+Part 2
+
+The names of the 561 measured variables (more information about each variable can be found in the original codebook below) were imported from the features.txt file
+
+grep was used to extract only variables which were means or standard deviations by looking for the text strings “mean” or “std” in the variable names.
+
+The single data set created in Part 1 was subset by variables with mean or std in the name. The new data set contained only 79 measured variables plus the subject and activity columns for a total of 81 variables.
+
+
+=================
+Part 3
+
+The activities numbered 1-6 were converted into meaningful descriptions using the information in the activity_labels.txt file
+
+1 WALKING
+2 WALKING_UPSTAIRS
+3 WALKING_DOWNSTAIRS
+4 SITTING
+5 STANDING
+6 LAYING
+
+=================
+Part 4
+
+The names of the 79 measured variables which were kept in Part 2 were converted to more meaningful names using the gsub function to edit the existing names. The following changes were made
+
+() was removed
+incorrect duplication BodyBody was changed to Body
+t was changed to time
+f was changed to frequency
+Acc was changed to Accelerometer
+Gyro was changed to Gyroscope
+Mag was changed to Magnitude
+Freq was changed to Frequency
+
+These expanded names were based on information provided in the original codebook (below). In keeping with tidy data principles, the names were changed to be more descriptive, however, the capitalization structure was kept to be in line with existing naming conventions.
+
+=================
+Part 5
+
+A new tidy data set was created which took the average of each of the 79 measured variables for each activity done by each subject. Since there were 30 subjects and 6 activities, there are a total of 180 rows in this new data set. The 81 columns correspond to the subject ID, the activity name, and the 79 measured variables which are now reported as the mean for that activity as done by that subject.
+
+This new data set is exported as tidy_averages.txt
+
+
+=================
+Information about measurements and experimental design can be found in the original codebook reproduced below
+=================
+
+Feature Selection 
+=================
+
+The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. These time domain signals (prefix 't' to denote time) were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. Similarly, the acceleration signal was then separated into body and gravity acceleration signals (tBodyAcc-XYZ and tGravityAcc-XYZ) using another low pass Butterworth filter with a corner frequency of 0.3 Hz. 
+
+Subsequently, the body linear acceleration and angular velocity were derived in time to obtain Jerk signals (tBodyAccJerk-XYZ and tBodyGyroJerk-XYZ). Also the magnitude of these three-dimensional signals were calculated using the Euclidean norm (tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag). 
+
+Finally a Fast Fourier Transform (FFT) was applied to some of these signals producing fBodyAcc-XYZ, fBodyAccJerk-XYZ, fBodyGyro-XYZ, fBodyAccJerkMag, fBodyGyroMag, fBodyGyroJerkMag. (Note the 'f' to indicate frequency domain signals). 
+
+These signals were used to estimate variables of the feature vector for each pattern:  
+'-XYZ' is used to denote 3-axial signals in the X, Y and Z directions.
+
+tBodyAcc-XYZ
+tGravityAcc-XYZ
+tBodyAccJerk-XYZ
+tBodyGyro-XYZ
+tBodyGyroJerk-XYZ
+tBodyAccMag
+tGravityAccMag
+tBodyAccJerkMag
+tBodyGyroMag
+tBodyGyroJerkMag
+fBodyAcc-XYZ
+fBodyAccJerk-XYZ
+fBodyGyro-XYZ
+fBodyAccMag
+fBodyAccJerkMag
+fBodyGyroMag
+fBodyGyroJerkMag
+
+The set of variables that were estimated from these signals are: 
+
+mean(): Mean value
+std(): Standard deviation
+mad(): Median absolute deviation 
+max(): Largest value in array
+min(): Smallest value in array
+sma(): Signal magnitude area
+energy(): Energy measure. Sum of the squares divided by the number of values. 
+iqr(): Interquartile range 
+entropy(): Signal entropy
+arCoeff(): Autorregresion coefficients with Burg order equal to 4
+correlation(): correlation coefficient between two signals
+maxInds(): index of the frequency component with largest magnitude
+meanFreq(): Weighted average of the frequency components to obtain a mean frequency
+skewness(): skewness of the frequency domain signal 
+kurtosis(): kurtosis of the frequency domain signal 
+bandsEnergy(): Energy of a frequency interval within the 64 bins of the FFT of each window.
+angle(): Angle between to vectors.
+
+Additional vectors obtained by averaging the signals in a signal window sample. These are used on the angle() variable:
+
+gravityMean
+tBodyAccMean
+tBodyAccJerkMean
+tBodyGyroMean
+tBodyGyroJerkMean
+
+The complete list of variables of each feature vector is available in 'features.txt'
